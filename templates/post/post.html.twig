@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="card">
+
+		<div class="card-header">{{post.author.username}}</div>
+		<div class="card-body">
+
+			<p class="card-text">{{post.content}}</p>
+			<div class="row">
+				{% for attachment in post.attachments %}
+					<div class="col-sm-6"><img class="img-fluid" src="{{ vich_uploader_asset(attachment) }}"></div>
+				{% endfor %}
+			</div>
+
+		</div>
+	</div>
+
+	<div class="btn-group" role="group">
+		<a href="/post/{{post.id}}/like" class="btn btn-success">J'aime ({{post.likes.count()}})</a>
+		<a href="/post/{{post.id}}/dislike" class="btn btn-danger">Je n'aime pas ({{post.dislikes.count()}})</a>
+
+	</div>
+
+	<h4>Commentaires</h4>
+
+	<ul>
+		{% for comment in post.comments %}
+			<li>{{ comment.author.username }}
+				-
+				{{ comment.content }}</li>
+		{% endfor %}
+	</ul>
+
+
+	<h5>Ajouter un commentaire</h5>
+
+	{{form(comment_form)}}{% endblock %}

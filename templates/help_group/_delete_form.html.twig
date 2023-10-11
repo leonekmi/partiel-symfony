@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_help_group_delete', {'id': help_group.id}) }}" onsubmit="return confirm('Tous les posts seront supprimés ! Êtes-vous sûr ?');">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ help_group.id) }}">
+	<button class="btn btn-danger">Supprimer</button>
+</form>

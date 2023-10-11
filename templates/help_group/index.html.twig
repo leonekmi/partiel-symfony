@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HelpGroup index
+{% endblock %}
+
+{% block body %}
+	<h1>HelpGroup index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Date de création</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for help_group in help_groups %}
+				<tr>
+					<td>{{ help_group.name }}</td>
+					<td>{{ help_group.description }}</td>
+					<td>{{ help_group.createdAt ? help_group.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('app_help_group_show', {'id': help_group.id}) }}">afficher</a>
+						<a href="{{ path('app_help_group_edit', {'id': help_group.id}) }}">modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">Vous ne faites partie d'aucun groupe.</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_help_group_new') }}">Créer un nouveau groupe</a>
+{% endblock %}

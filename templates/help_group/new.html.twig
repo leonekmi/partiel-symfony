@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New HelpGroup
+{% endblock %}
+
+{% block body %}
+	<h1>Créer un nouveau groupe</h1>
+
+	{{ form(form) }}
+
+		<a href="{{ path('app_help_group_index') }}">Retour à la liste</a>
+	{% endblock %}

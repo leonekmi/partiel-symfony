@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<h1>Hello! ✅</h1>
+
+	<a href="/group">Groupes</a>
+
+	<details>
+		<summary>Créer un post</summary>
+
+		{{ form(createPostForm) }}
+
+		</details>
+
+		{% for post in posts %}
+			<div class="card">
+
+				<div class="card-header">{{post.author.firstName}}</div>
+				<div class="card-body">
+
+					<p class="card-text">{{post.content}}</p>
+					<div class="row">
+						{% for attachment in post.attachments %}
+							<div class="col-sm-6"><img class="img-fluid" src="{{ vich_uploader_asset(attachment) }}"></div>
+						{% endfor %}
+					</div>
+
+					<a href="{{ path('app_post_show', {id:post.id}) }}" class="btn btn-primary mt-2">Voir les détails du post</a>
+					<div class="btn-group" role="group">
+						<a href="/post/{{post.id}}/like" class="btn btn-success">J'aime ({{post.likes.count()}})</a>
+						<a href="/post/{{post.id}}/dislike" class="btn btn-danger">Je n'aime pas ({{post.dislikes.count()}})</a>
+
+					</div>
+
+				</div>
+			</div>
+		{% endfor %}
+	{% endblock %}

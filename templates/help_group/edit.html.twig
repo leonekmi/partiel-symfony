@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le groupe
+{% endblock %}
+
+{% block body %}
+	<h1>Modifier le groupe</h1>
+
+	{{ form(form) }}
+
+		<a href="{{ path('app_help_group_index') }}">Retour à la liste</a>
+
+		{{ include('help_group/_delete_form.html.twig') }}
+	{% endblock %}
